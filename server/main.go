@@ -4,12 +4,14 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rs/xid"
 )
 
 var secrets map[string]Secret = make(map[string]Secret)
 
 func setup() *gin.Engine {
+	// initialize firebase
+	InitFirestore()
+
 	r := gin.Default()
 
 	// Ping test
@@ -17,30 +19,10 @@ func setup() *gin.Engine {
 		c.String(http.StatusOK, "pong")
 	})
 
-	r.POST("/submit-secret", func(ctx *gin.Context) {
+	r.POST("/submit-secret", SubmitSecretHandler)
 
-		var Body SubmitSecretBody
+	r.POST("/secret/:key", GetSecretHandler)
 
-		if ctx.ShouldBindJSON(&Body) != nil {
-			// error
-		}
-
-		uniq := xid.New()
-
-		secrets[uniq.String()] = Secret{
-			Id:              uniq.String(),
-			EncryptedSecret: Body.EncryptedSecret,
-			PassPhrase:      Body.PassPhrase,
-		}
-
-		ctx.JSON(http.StatusAccepted, gin.H{
-			"success": true,
-			"message": "Secret saved",
-			"data": map[string]string{
-				"secret_id": uniq.String(),
-			},
-		})
-	})
 	return r
 }
 
