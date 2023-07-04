@@ -1,0 +1,41 @@
+/* body {
+    background-color: rgb(55, 53, 53);
+    margin: 0;
+    padding: 0;
+} */
+
+.top-banner {
+    height: 5px;
+    width: 100%;
+    background-color: blue;
+    margin: 0;
+}
+
+.secret-label {
+    color: #ffffff;
+}
+
+#secret {
+    resize: both;
+    min-height: 300px;
+    width: 800px;
+
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.main-heading {
+    margin: 50px;
+} 
+
+button {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 40px;
+}
+
+input {
+    max-width: 800px;
+    margin-left: 50px;
+    margin-right: 50px;
+}

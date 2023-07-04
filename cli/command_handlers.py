@@ -30,8 +30,9 @@ def new_handler():
         if (resp['success']):
             rprint("[green]Secret Saved!![/green]")
 
-            rprint("Use the [yellow]get[/yellow] command with the id [blue]" + resp['data']['secret_id'] +"[/blue]")
-            rprint("\nOr click/share this link to view the secret: [blue]" + os.environ["COVERT_WEB_URL"]+"/get/" + resp['data']['secret_id'] + "[/blue]")
+            rprint("Use the [yellow]get[/yellow] command with the id [blue]" + resp['data']['secret_id'] +"[/blue] to get the secret")
+            # rprint("\nOr click/share this link to view the secret: [blue]" + os.environ["COVERT_WEB_URL"]+"/get/" + resp['data']['secret_id'] + "[/blue]")
+            rprint("[red]Note: The secret can only be viewed once.[/red]")
         else:
             rprint("[red]" + resp['message'] +"[/red]")
     except:
