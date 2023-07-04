@@ -1,8 +1,8 @@
 package main
 
 type SubmitSecretBody struct {
-	EncryptedSecret string
-	PassPhrase      string
+	EncryptedSecret string `json:"encrypted_secret"`
+	PassPhrase      string `json:"pass_phrase"`
 }
 
 type GetSecretBody struct {

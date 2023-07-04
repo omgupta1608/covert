@@ -21,7 +21,7 @@ func setup() *gin.Engine {
 
 	r.POST("/submit-secret", SubmitSecretHandler)
 
-	r.POST("/secret/:key", GetSecretHandler)
+	r.POST("/secret", GetSecretHandler)
 
 	return r
 }
