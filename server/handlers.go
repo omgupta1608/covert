@@ -27,6 +27,7 @@ func SubmitSecretHandler(ctx *gin.Context) {
 		Id:              uniq.String(),
 		EncryptedSecret: Body.EncryptedSecret,
 		PassPhrase:      Body.PassPhrase,
+		IsOpened:        false,
 	}
 
 	secret_ref := FirebaseDBClient.NewRef("secrets/" + uniq.String())
@@ -74,6 +75,15 @@ func GetSecretHandler(ctx *gin.Context) {
 		})
 	}
 
+	if secret.IsOpened {
+		ctx.JSON(http.StatusAccepted, gin.H{
+			"success": false,
+			"message": "Secret already opened. Cannot view again",
+			"data":    nil,
+		})
+		return
+	}
+
 	if secret.PassPhrase != Body.PassPhrase {
 		ctx.JSON(http.StatusAccepted, gin.H{
 			"success": false,
@@ -82,6 +92,8 @@ func GetSecretHandler(ctx *gin.Context) {
 		})
 		return
 	}
+
+	//TODO: update secret (is_opened=true) before sending response
 
 	ctx.JSON(http.StatusAccepted, gin.H{
 		"success": true,

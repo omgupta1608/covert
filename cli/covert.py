@@ -8,8 +8,8 @@ def new():
     new_handler()
 
 @app.command()
-def get():
-    get_handler()
+def get(key: str):
+    get_handler(key)
 
 if __name__ == "__main__":
     app()

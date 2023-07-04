@@ -14,4 +14,5 @@ type Secret struct {
 	Id              string `json:"id"`
 	EncryptedSecret string `json:"encrypted_secret"`
 	PassPhrase      string `json:"pass_phrase"`
+	IsOpened        bool   `json:"is_opened"`
 }
