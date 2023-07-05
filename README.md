@@ -24,6 +24,7 @@ covert get - get a saved secret
 - The encrypted token is then fetched and decrypted using the pass phrase on the client and displayed to the user (only once)
 
 
-#### *__Feel free to open a issue or collaborate__*
+#### *__Feel free to open an issue or collaborate__*
+_Need someone to design the front-end coz I am really bad at it. :(_
 
 
