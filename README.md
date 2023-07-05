@@ -1,5 +1,5 @@
 # covert
-A way to manage your secrets
+A secure way to communicate your secrets
 
 
 ## Web Client (WIP)
