@@ -14,7 +14,7 @@ func SubmitSecretHandler(ctx *gin.Context) {
 
 	if err := ctx.ShouldBindJSON(&Body); err != nil {
 		log.Fatal(err)
-		ctx.JSON(http.StatusAccepted, gin.H{
+		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"success": false,
 			"message": "Something went wrong",
 			"data":    nil,
@@ -34,7 +34,7 @@ func SubmitSecretHandler(ctx *gin.Context) {
 
 	if err := secret_ref.Set(FirebaseCtx, newSecret); err != nil {
 		log.Fatal(err)
-		ctx.JSON(http.StatusAccepted, gin.H{
+		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"success": false,
 			"message": "Something went wrong",
 			"data":    nil,
@@ -55,7 +55,7 @@ func GetSecretHandler(ctx *gin.Context) {
 
 	if err := ctx.ShouldBindJSON(&Body); err != nil {
 		log.Fatal(err)
-		ctx.JSON(http.StatusAccepted, gin.H{
+		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"success": false,
 			"message": "Something went wrong",
 			"data":    nil,
@@ -68,7 +68,7 @@ func GetSecretHandler(ctx *gin.Context) {
 
 	if err := secret_ref.Get(FirebaseCtx, &secret); err != nil {
 		log.Fatal(err)
-		ctx.JSON(http.StatusAccepted, gin.H{
+		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"success": false,
 			"message": "Something went wrong",
 			"data":    nil,
@@ -76,7 +76,7 @@ func GetSecretHandler(ctx *gin.Context) {
 	}
 
 	if secret.IsOpened {
-		ctx.JSON(http.StatusAccepted, gin.H{
+		ctx.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
 			"message": "Secret already opened. Cannot view again",
 			"data":    nil,
@@ -85,7 +85,7 @@ func GetSecretHandler(ctx *gin.Context) {
 	}
 
 	if secret.PassPhrase != Body.PassPhrase {
-		ctx.JSON(http.StatusAccepted, gin.H{
+		ctx.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
 			"message": "Incorrect passphrase",
 			"data":    nil,
@@ -93,7 +93,16 @@ func GetSecretHandler(ctx *gin.Context) {
 		return
 	}
 
-	//TODO: update secret (is_opened=true) before sending response
+	if err := secret_ref.Update(ctx, map[string]interface{}{
+		"is_opened": true,
+	}); err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"success": false,
+			"message": "Something went wrong",
+			"data":    nil,
+		})
+		return
+	}
 
 	ctx.JSON(http.StatusAccepted, gin.H{
 		"success": true,

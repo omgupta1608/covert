@@ -5,6 +5,7 @@ import requests
 from dotenv import load_dotenv
 import os
 import json
+from crypto_c import encrypt, decrypt
 
 load_dotenv()
 
@@ -13,7 +14,7 @@ import inquirer
 
 def new_handler():
     questions = [
-    inquirer.Text("encrypted_secret", message="Enter Secret"),
+    inquirer.Text("secret", message="Enter Secret"),
     inquirer.Text("pass_phrase", message="Enter a word or pass phrase that's difficult to guess"),
     ]
 
@@ -21,10 +22,12 @@ def new_handler():
 
     # send secret as encrypted_secret
     try:
+        answers["encrypted_secret"] = encrypt(answers["pass_phrase"], answers["secret"])
+        del answers["secret"]
+
         json_object = json.dumps(answers) 
         r = requests.post(os.environ["COVERT_SERVER_URL"] + "/submit-secret", data=json_object)
 
-        # TODO: Client side secret encyption (pass phrase encryption)
         resp = r.json()
 
         if (resp['success']):
@@ -53,11 +56,9 @@ def get_handler(key:str):
         resp = r.json()
 
         if (resp['success']):
-
-            # TODO: Client side secret decryption of the secret (pass phrase decryption)
+            decrypted_secret = decrypt(answers["pass_phrase"], resp['data']['encrypted_secret'])
             rprint("[green]Secret Fetched![/green]\n")
-
-            rprint(r.json()['data']['encrypted_secret'])
+            rprint(decrypted_secret)
         else:
             rprint("[red]" + resp['message'] +"[/red]")
     except:
