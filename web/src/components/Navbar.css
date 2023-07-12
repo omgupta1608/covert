@@ -1,0 +1,10 @@
+.nav-wrapper {
+	display: flex;
+	justify-content: space-between;
+	background-color: brown;
+}
+
+.nav-wrapper ul{	
+	display: flex;
+	list-style-type: none;
+}

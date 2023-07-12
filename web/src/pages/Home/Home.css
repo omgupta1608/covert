@@ -1,0 +1,59 @@
+.home-wrapper {
+	padding-top: 1rem;
+	text-align: center;
+}
+
+.home-wrapper >div {
+	width: 100%;
+	/* background-color: lemonchiffon; */
+	margin: 1rem 0;
+}
+
+.home-wrapper >div > textarea {
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid lightgray;
+	padding: 1rem 1.5rem;
+	font-size: 1rem;
+}
+
+.privacyOptions-wrapper {
+	border: 3px solid lightgray;
+	border-radius: .5rem;
+	position: relative;
+	padding: 3rem 0 2rem;
+}
+.privacyOptions-wrapper div:first-child {
+	position: absolute;
+	background-color: rgb(230, 230, 230);
+	top: 0;
+	color: gray;
+	font-weight: bold;
+	padding: .25rem .5rem;
+	border-radius: .35rem 0 .5rem;
+}
+
+.heading-container p{
+	font-size: 1.5rem;
+	color: #333;
+}
+.heading-container span {
+	font-size: 1rem;
+	color: #999;
+}
+
+.buttons button{
+width: 100%;
+padding: 1rem .8rem;
+font-size: 1rem;
+font-weight: bold;
+border-radius: .5rem;
+border: 1px solid gray;
+color: rgb(104, 104, 104);
+margin-top: .5rem;
+}
+
+.buttons button:first-of-type {
+	background-color: #D22000;
+	color: white;
+}
