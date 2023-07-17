@@ -29,5 +29,5 @@ func setup() *gin.Engine {
 func main() {
 	r := setup()
 
-	r.Run(":4000")
+	r.Run(":8080")
 }
