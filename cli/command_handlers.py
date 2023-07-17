@@ -3,9 +3,9 @@ import os
 import sys
 import requests
 from dotenv import load_dotenv
-import os
 import json
 from crypto_c import encrypt, decrypt
+from constants import COVERT_SERVER_URL
 
 load_dotenv()
 
@@ -26,7 +26,7 @@ def new_handler():
         del answers["secret"]
 
         json_object = json.dumps(answers) 
-        r = requests.post(os.environ["COVERT_SERVER_URL"] + "/submit-secret", data=json_object)
+        r = requests.post(COVERT_SERVER_URL + "/submit-secret", data=json_object)
 
         resp = r.json()
 
@@ -51,7 +51,7 @@ def get_handler(key:str):
     answers['key'] = key
     try:
         json_object = json.dumps(answers) 
-        r = requests.post(os.environ["COVERT_SERVER_URL"] + "/secret", data=json_object)
+        r = requests.post(COVERT_SERVER_URL + "/secret", data=json_object)
 
         resp = r.json()
 
