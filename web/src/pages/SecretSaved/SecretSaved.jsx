@@ -1,7 +1,5 @@
 import { useState } from "react";
 import "./SecretSaved.css";
-import axios from "axios";
-import toast, { toastConfig } from "react-simple-toasts";
 import "react-simple-toasts/dist/theme/light.css";
 import { useParams } from "react-router-dom";
 import { HOST } from "../../constants/constants";

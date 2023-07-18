@@ -3,8 +3,10 @@ import "./Home.css";
 import axios from "axios";
 import toast, { toastConfig } from "react-simple-toasts";
 import "react-simple-toasts/dist/theme/light.css";
-import {SERVER_URL} from '../../constants/constants';
+import {HOST, SERVER_URL} from '../../constants/constants';
+import { useNavigate } from "react-router";
 function Home() {
+  const navigate = useNavigate();
   const [userInput, setUserInput] = useState("");
   const [passPhrase, setPassPhrase] = useState("");
   const [lifetime, setLifetime] = useState("5m");
@@ -36,7 +38,15 @@ function Home() {
         }
       );
       console.log("Resp: ", resp);
+      const secret_id = resp?.data?.data?.secret_id;
+
+      if (!secret_id) {
+        toast("Something went wrong. Please try again later.");
+        return;  
+      }
+
       toast("Secret saved successfully");
+      navigate(`/saved/${secret_id}`)
     } catch (err) {
       console.error(err);
       toast("Something went wrong. Please try again later.");
