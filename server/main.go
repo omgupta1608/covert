@@ -14,6 +14,8 @@ func setup() *gin.Engine {
 
 	r := gin.Default()
 
+	r.Use(CORSMiddleware())
+
 	// Ping test
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "pong")

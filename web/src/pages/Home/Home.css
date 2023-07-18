@@ -1,59 +1,144 @@
 .home-wrapper {
-	padding-top: 1rem;
-	text-align: center;
+  padding-top: 1rem;
+  text-align: center;
 }
 
-.home-wrapper >div {
-	width: 100%;
-	/* background-color: lemonchiffon; */
-	margin: 1rem 0;
+.home-wrapper > div {
+  width: 100%;
+  /* background-color: lemonchiffon; */
+  margin: 1rem 0;
 }
 
-.home-wrapper >div > textarea {
-	width: 100%;
-	border-radius: 8px;
-	border: 1px solid lightgray;
-	padding: 1rem 1.5rem;
-	font-size: 1rem;
+.home-wrapper > div > textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
 }
 
 .privacyOptions-wrapper {
-	border: 3px solid lightgray;
-	border-radius: .5rem;
-	position: relative;
-	padding: 3rem 0 2rem;
+  border: 3px solid lightgray;
+  border-radius: 0.5rem;
+  position: relative;
+  padding: 3rem 0 2rem;
 }
 .privacyOptions-wrapper div:first-child {
-	position: absolute;
-	background-color: rgb(230, 230, 230);
-	top: 0;
-	color: gray;
-	font-weight: bold;
-	padding: .25rem .5rem;
-	border-radius: .35rem 0 .5rem;
+  position: absolute;
+  background-color: rgb(230, 230, 230);
+  top: 0;
+  color: gray;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.35rem 0 0.5rem;
 }
 
-.heading-container p{
-	font-size: 1.5rem;
-	color: #333;
+.heading-container p {
+  font-size: 1.5rem;
+  color: #333;
 }
 .heading-container span {
-	font-size: 1rem;
-	color: #999;
+  font-size: 1rem;
+  color: #999;
 }
 
-.buttons button{
-width: 100%;
-padding: 1rem .8rem;
-font-size: 1rem;
-font-weight: bold;
-border-radius: .5rem;
-border: 1px solid gray;
-color: rgb(104, 104, 104);
-margin-top: .5rem;
+.buttons button {
+  width: 100%;
+  padding: 1rem 0.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: 1px solid gray;
+  color: rgb(104, 104, 104);
+  margin-top: 0.5rem;
 }
 
 .buttons button:first-of-type {
-	background-color: #D22000;
-	color: white;
+  background-color: #c800ff;
+  color: white;
+}
+
+.main-heading {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.pp-label {
+  margin: 10px;
+}
+
+.pp-input {
+}
+
+.custom-field {
+  position: relative;
+  font-size: 14px;
+  border-top: 20px solid transparent;
+  margin-bottom: 5px;
+  display: inline-block;
+  --field-padding: 12px;
+}
+
+.custom-field input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f2f2f2;
+  padding: var(--field-padding);
+  border-radius: 3px;
+  width: 250px;
+  outline: none;
+  font-size: 14px;
+}
+
+.custom-field .placeholder {
+  position: absolute;
+  left: var(--field-padding);
+  width: calc(100% - (var(--field-padding) * 2));
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  top: 22px;
+  line-height: 100%;
+  transform: translateY(-50%);
+  color: #000000;
+  transition: top 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+}
+
+.custom-field input.dirty + .placeholder,
+.custom-field input:focus + .placeholder,
+.custom-field input:not(:placeholder-shown) + .placeholder {
+  top: -10px;
+  font-size: 10px;
+  color: #222;
+}
+
+.custom-field.one input {
+  background: none;
+  border: 2px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.custom-field.one input + .placeholder {
+  left: 8px;
+  padding: 0 5px;
+}
+
+.custom-field.one input.dirty,
+.custom-field.one input:not(:placeholder-shown),
+.custom-field.one input:focus {
+  border-color: #222;
+  transition-delay: 0.1s;
+}
+
+.custom-field.one input.dirty + .placeholder,
+.custom-field.one input:not(:placeholder-shown) + .placeholder,
+.custom-field.one input:focus + .placeholder {
+  top: 0;
+  font-size: 10px;
+  color: #222;
+  background: #fff;
+  width: auto;
 }

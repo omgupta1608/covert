@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./Home.css";
 import axios from "axios";
 import toast, { toastConfig } from "react-simple-toasts";
-import 'react-simple-toasts/dist/theme/light.css';
-
+import "react-simple-toasts/dist/theme/light.css";
+import {SERVER_URL} from '../../constants/constants';
 function Home() {
   const [userInput, setUserInput] = useState("");
   const [passPhrase, setPassPhrase] = useState("");
@@ -27,7 +27,7 @@ function Home() {
 
     try {
       const resp = await axios.post(
-        `${process.env.SERVER_URL}/submit-secret`,
+        `${SERVER_URL}/submit-secret`,
         payload,
         {
           headers: {
@@ -45,6 +45,7 @@ function Home() {
 
   return (
     <div className="home-wrapper">
+      <h1 className="main-heading">COVERT</h1>
       <div className="heading-container">
         <p>Paste a password, secret message or private link below.</p>
         <span>Keep sensitive info out of your email and chat logs</span>
@@ -62,14 +63,28 @@ function Home() {
       <div className="privacyOptions-wrapper">
         <div>Privacy Options</div>
         <div>
-          <label htmlFor="passPhrase">Passphrase:</label>
+          {/* <label htmlFor="passPhrase" className="pp-label">
+            Passphrase:
+          </label>
           <input
+            className="pp-input"
             type="text"
+            placeholder="Something hard to guess..."
             name="passPhrase"
             onChange={(e) => updateInput(e)}
-          />
+          /> */}
+
+          <label className="custom-field one">
+            <input
+              type="text"
+              placeholder=" "
+              name="passPhrase"
+              onChange={(e) => updateInput(e)}
+            />
+            <span className="placeholder">Enter Pass Phrase</span>
+          </label>
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="lifetime">Expiration:</label>
           <select
             name="lifetime"
@@ -101,7 +116,7 @@ function Home() {
               7 days
             </option>
           </select>
-        </div>
+        </div> */}
       </div>
       <div className="buttons">
         <button onClick={submitSecret}>Create a secret link*</button>
