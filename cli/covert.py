@@ -5,7 +5,6 @@ import sys
 import requests
 from dotenv import load_dotenv
 import json
-from constants import COVERT_SERVER_URL
 import base64
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
@@ -15,7 +14,7 @@ import inquirer
 app = typer.Typer()
 load_dotenv()
 sys.path.append(os.path.realpath("."))
-
+COVERT_SERVER_URL = 'https://covert-server.as.r.appspot.com'
 
 def encrypt(key: str, source: str, encode=True):
     try:
