@@ -53,6 +53,10 @@
   margin-top: 0.5rem;
 }
 
+.buttons button:hover {
+  cursor: pointer;
+}
+
 .buttons button:first-of-type {
   background-color: #c800ff;
   color: white;

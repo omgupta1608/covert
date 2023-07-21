@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home/Home";
 import SecretSaved from "./pages/SecretSaved/SecretSaved";
+import ViewSecret from "./pages/ViewSecret/ViewSecret";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -14,7 +15,7 @@ function App() {
           <Routes>
           <Route exact path="/" element={<Home/>} />
           <Route path="/saved/:secret_id" element={<SecretSaved/>} />
-          <Route path="/view/:secret_id" element={<SecretSaved/>} />
+          <Route path="/view/:secret_id" element={<ViewSecret/>} />
           </Routes>
         </Router>
       </div>
