@@ -1,7 +1,7 @@
 # covert
 A secure way to communicate your secrets
-- Find the CLI (wip) [here](https://pypi.org/project/covert-ots/)
-- Find the website [here](https://covert-ots.web.app/)
+- Find the CLI [here](https://pypi.org/project/covert-ots/)
+- Find the website [here](https://covert-ots.web.app/) (deployed on Firebase)
 - Backend Deployed on Google Cloud App Engine
 ## Working
 - When a user saves a secret it is encrypted on the client side using a pass phrase encryption algo.
